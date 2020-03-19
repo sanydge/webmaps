@@ -25,6 +25,10 @@ for lt, ln, el in zip(lat, lon, elev):
     fg.add_child(folium.Marker(location=[lt, ln], popup=folium.Popup(str(el)+"m", parse_html=True),
                                icon=folium.Icon(color=color_producer(el))))
 
+fg2 = folium.FeatureGroup("Population")
+fg2.add_child(folium.GeoJson(data=open('world.json', encoding='utf-8-sig').read()))
+map.add_child(fg2)
+
 map.add_child(fg)
 
 map.save("Map1.html")
